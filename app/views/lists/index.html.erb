@@ -1,0 +1,22 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1595769816263-9b910be24d5f?q=80&w=2079&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
+  <div class="container">
+    <h1>Save any kind of movies</h1>
+    <h2>These are your lists</h2>
+  </div>
+</div>
+<div class="container mt-5">
+  <h1>Lists</h1>
+  <div class="row">
+    <% @lists.each do |list| %>
+      <div class="col-md-4">
+        <div class="card mb-4 shadow">
+          <div class="card-body bg-light">
+            <h5 class="card-title"><%= list.name %></h5>
+          </div>
+          <div class="card-body">
+            <%= link_to "More Info", list_path(list), class: "text-decoration-none" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+</div>
