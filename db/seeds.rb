@@ -33,3 +33,12 @@ Movie.create(title: "Parasite", overview: "A poor family schemes to infiltrate a
 Movie.create(title: "The Perfect Storm", overview: "An ill-fated fishing trip turns into a fight for survival when a massive storm hits the Atlantic Ocean.", poster_url: "https://image.tmdb.org/t/p/original/AmEp4B6knYA3ZCjQkJQ3G9lR4Rq.jpg", rating: 6.4)
 
 puts "Finished creating movies!"
+List.destroy_all
+puts "Creating lists..."
+# List.create(name: "Superheroes")
+# List.create(name: "Classics")
+# List.create(name: "About boats that sink")
+# List.create(name: "Drama")
+# List.create(name: "Movies where people fall asleep")
+
+puts "Finished creating lists!"

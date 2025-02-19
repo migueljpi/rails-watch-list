@@ -1,5 +1,5 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= @list.image %>);">
-  <div class="text-center">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= cl_image_path @list.photo.key %>');">
+  <div class="d-flex align-items-center justify-content-center">
     <h1><%= @list.name %></h1>
   </div>
 </div>
@@ -8,24 +8,55 @@
 
 <div class="container mt-5 ">
   <div class="d-flex justify-content-between p-3">
-      <h1>Movies</h1>
-      <%= link_to "Add Bookmark", new_list_bookmark_path(@list), class: "btn btn-primary", style: "font-size: 23px" %>
+    <h1>Movies</h1>
+    <%= link_to "Add Bookmark", new_list_bookmark_path(@list), class: "btn btn-primary d-flex align-items-center justify-content-center", style: "font-size: 23px" %>
   </div>
   <div class="row">
     <% @list.bookmarks.each do |bookmark| %>
       <div class="col-md-4">
         <div class="card mb-4 shadow" style="background-color: #eee; width: 400px; height: 500px;">
-          <div class="card-body bg-light object-fit-fill" id="card-main" style="background-image: url('<%= bookmark.movie.poster_url %>'); ">
+          <%# Card Main %>
+          <div class="card-body bg-light object-fit-fill" id="card-main" style="background-image: url('<%= bookmark.movie.poster_url %>'); height: 200px; background-size: cover; background-position: center;">
           </div>
-          <div class="p-3" id="info-card">
+
+          <%# Info Card %>
+          <div class="p-3" id="info-card" style="height: 120px; overflow: hidden;">
             <h5><%= bookmark.movie.title %> - <%= bookmark.movie.rating %> 🌟</h5>
             <p><%= bookmark.movie.overview %></p>
           </div>
-          <div class="d-flex justify-content-between p-3" id="comment-card">
-            <p><i class="fa-solid fa-quote-left">  </i><%= bookmark.comment %></p>
-            <%= link_to "Delete this bookmark", bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "text-danger text-decoration-none" %>
+
+          <%# Comment Card %>
+          <div class="d-flex justify-content-between p-3" id="comment-card" style="height: 100px;">
+            <%# Comment %>
+            <p class="m-0" style="flex: 2; overflow: hidden; text-overflow: ellipsis; padding-right: 1rem;">
+              <i class="fa-solid fa-quote-left"></i> <%= " " %> <%= bookmark.comment %>
+            </p>
+            <%# Button %>
+            <%= link_to "Delete this bookmark", bookmark_path(bookmark),
+              data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+              class: "btn btn-secondary text-decoration-none d-flex align-items-center justify-content-center",
+              style: "flex: 1;" %>
           </div>
         </div>
       </div>
     <% end %>
+
+
+
+
+  </div>
+
+
+  <div class="d-flex justify-content-between p-3 mt-5">
+    <h1>Reviews</h1>
+    <%= link_to "Add a Review", new_list_review_path(@list), class: "btn btn-primary d-flex align-items-center justify-content-center", style: "font-size: 23px" %>
+  </div>
+
+  <div class="row">
+    <% @list.reviews.each do |review| %>
+      <div class="card mb-4 shadow d-flex justify-content-between p-3 " style="background-color: #eee" id="review-card">
+        <p style="margin-bottom: 0px"><i class="fa-solid fa-quote-left"></i> <%= " " %><%= review.content %></p>
+      </div>
+    <% end %>
+  </div>
 </div>

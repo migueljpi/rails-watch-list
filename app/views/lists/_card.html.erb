@@ -1,0 +1,9 @@
+<div class="card mb-4 shadow">
+  <%= link_to list_path(list), class: "text-decoration-none" do %>
+    <div class="card-body d-flex align-items-center justify-content-center">
+      <h5 style="color: black; font-family: Arial, sans-serif; margin-bottom: 0px;"><%= list.name %></h5>
+    </div>
+    <div class="card-body bg-light object-fit-fill" id="card-main" style="background-image: url('<%= cl_image_path list.photo.key %>'); height: 200px; background-size: cover; background-position: center;">
+    </div>
+  <% end %>
+</div>
